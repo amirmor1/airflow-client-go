@@ -1,20 +1,3 @@
-// Licensed to the Apache Software Foundation (ASF) under one
-// or more contributor license agreements.  See the NOTICE file
-// distributed with this work for additional information
-// regarding copyright ownership.  The ASF licenses this file
-// to you under the Apache License, Version 2.0 (the
-// "License"); you may not use this file except in compliance
-// with the License.  You may obtain a copy of the License at
-//
-//   http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing,
-// software distributed under the License is distributed on an
-// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-// KIND, either express or implied.  See the License for the
-// specific language governing permissions and limitations
-// under the License.
-
 /*
 Airflow API (Stable)
 
@@ -32,100 +15,157 @@ import (
 	"encoding/json"
 )
 
-// TaskCollection Collection of tasks.
-type TaskCollection struct {
-	Tasks []Task `json:"tasks,omitempty"`
+// TriggererStatus The status and the latest triggerer heartbeat.  *New in version 2.6.2* 
+type TriggererStatus struct {
+	Status NullableHealthStatus `json:"status,omitempty"`
+	// The time the triggerer last did a heartbeat.
+	LatestTriggererHeartbeat NullableString `json:"latest_triggerer_heartbeat,omitempty"`
 }
 
-// NewTaskCollection instantiates a new TaskCollection object
+// NewTriggererStatus instantiates a new TriggererStatus object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTaskCollection() *TaskCollection {
-	this := TaskCollection{}
+func NewTriggererStatus() *TriggererStatus {
+	this := TriggererStatus{}
 	return &this
 }
 
-// NewTaskCollectionWithDefaults instantiates a new TaskCollection object
+// NewTriggererStatusWithDefaults instantiates a new TriggererStatus object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewTaskCollectionWithDefaults() *TaskCollection {
-	this := TaskCollection{}
+func NewTriggererStatusWithDefaults() *TriggererStatus {
+	this := TriggererStatus{}
 	return &this
 }
 
-// GetTasks returns the Tasks field value if set, zero value otherwise.
-func (o *TaskCollection) GetTasks() []Task {
-	if o == nil || o.Tasks == nil {
-		var ret []Task
+// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TriggererStatus) GetStatus() HealthStatus {
+	if o == nil || o.Status.Get() == nil {
+		var ret HealthStatus
 		return ret
 	}
-	return o.Tasks
+	return *o.Status.Get()
 }
 
-// GetTasksOk returns a tuple with the Tasks field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TaskCollection) GetTasksOk() ([]Task, bool) {
-	if o == nil || o.Tasks == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TriggererStatus) GetStatusOk() (*HealthStatus, bool) {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Tasks, true
+	return o.Status.Get(), o.Status.IsSet()
 }
 
-// HasTasks returns a boolean if a field has been set.
-func (o *TaskCollection) HasTasks() bool {
-	if o != nil && o.Tasks != nil {
+// HasStatus returns a boolean if a field has been set.
+func (o *TriggererStatus) HasStatus() bool {
+	if o != nil && o.Status.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetTasks gets a reference to the given []Task and assigns it to the Tasks field.
-func (o *TaskCollection) SetTasks(v []Task) {
-	o.Tasks = v
+// SetStatus gets a reference to the given NullableHealthStatus and assigns it to the Status field.
+func (o *TriggererStatus) SetStatus(v HealthStatus) {
+	o.Status.Set(&v)
+}
+// SetStatusNil sets the value for Status to be an explicit nil
+func (o *TriggererStatus) SetStatusNil() {
+	o.Status.Set(nil)
 }
 
-func (o TaskCollection) MarshalJSON() ([]byte, error) {
+// UnsetStatus ensures that no value is present for Status, not even an explicit nil
+func (o *TriggererStatus) UnsetStatus() {
+	o.Status.Unset()
+}
+
+// GetLatestTriggererHeartbeat returns the LatestTriggererHeartbeat field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TriggererStatus) GetLatestTriggererHeartbeat() string {
+	if o == nil || o.LatestTriggererHeartbeat.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.LatestTriggererHeartbeat.Get()
+}
+
+// GetLatestTriggererHeartbeatOk returns a tuple with the LatestTriggererHeartbeat field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TriggererStatus) GetLatestTriggererHeartbeatOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LatestTriggererHeartbeat.Get(), o.LatestTriggererHeartbeat.IsSet()
+}
+
+// HasLatestTriggererHeartbeat returns a boolean if a field has been set.
+func (o *TriggererStatus) HasLatestTriggererHeartbeat() bool {
+	if o != nil && o.LatestTriggererHeartbeat.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLatestTriggererHeartbeat gets a reference to the given NullableString and assigns it to the LatestTriggererHeartbeat field.
+func (o *TriggererStatus) SetLatestTriggererHeartbeat(v string) {
+	o.LatestTriggererHeartbeat.Set(&v)
+}
+// SetLatestTriggererHeartbeatNil sets the value for LatestTriggererHeartbeat to be an explicit nil
+func (o *TriggererStatus) SetLatestTriggererHeartbeatNil() {
+	o.LatestTriggererHeartbeat.Set(nil)
+}
+
+// UnsetLatestTriggererHeartbeat ensures that no value is present for LatestTriggererHeartbeat, not even an explicit nil
+func (o *TriggererStatus) UnsetLatestTriggererHeartbeat() {
+	o.LatestTriggererHeartbeat.Unset()
+}
+
+func (o TriggererStatus) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Tasks != nil {
-		toSerialize["tasks"] = o.Tasks
+	if o.Status.IsSet() {
+		toSerialize["status"] = o.Status.Get()
+	}
+	if o.LatestTriggererHeartbeat.IsSet() {
+		toSerialize["latest_triggerer_heartbeat"] = o.LatestTriggererHeartbeat.Get()
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableTaskCollection struct {
-	value *TaskCollection
+type NullableTriggererStatus struct {
+	value *TriggererStatus
 	isSet bool
 }
 
-func (v NullableTaskCollection) Get() *TaskCollection {
+func (v NullableTriggererStatus) Get() *TriggererStatus {
 	return v.value
 }
 
-func (v *NullableTaskCollection) Set(val *TaskCollection) {
+func (v *NullableTriggererStatus) Set(val *TriggererStatus) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableTaskCollection) IsSet() bool {
+func (v NullableTriggererStatus) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableTaskCollection) Unset() {
+func (v *NullableTriggererStatus) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableTaskCollection(val *TaskCollection) *NullableTaskCollection {
-	return &NullableTaskCollection{value: val, isSet: true}
+func NewNullableTriggererStatus(val *TriggererStatus) *NullableTriggererStatus {
+	return &NullableTriggererStatus{value: val, isSet: true}
 }
 
-func (v NullableTaskCollection) MarshalJSON() ([]byte, error) {
+func (v NullableTriggererStatus) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableTaskCollection) UnmarshalJSON(src []byte) error {
+func (v *NullableTriggererStatus) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
