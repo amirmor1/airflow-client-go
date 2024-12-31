@@ -1,22 +1,3 @@
-<!--
- Licensed to the Apache Software Foundation (ASF) under one
- or more contributor license agreements.  See the NOTICE file
- distributed with this work for additional information
- regarding copyright ownership.  The ASF licenses this file
- to you under the Apache License, Version 2.0 (the
- "License"); you may not use this file except in compliance
- with the License.  You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing,
- software distributed under the License is distributed on an
- "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- KIND, either express or implied.  See the License for the
- specific language governing permissions and limitations
- under the License.
- -->
-
 # TaskInstance
 
 ## Properties
@@ -30,7 +11,7 @@ Name | Type | Description | Notes
 **StartDate** | Pointer to **NullableString** |  | [optional] 
 **EndDate** | Pointer to **NullableString** |  | [optional] 
 **Duration** | Pointer to **NullableFloat32** |  | [optional] 
-**State** | Pointer to [**TaskState**](TaskState.md) |  | [optional] 
+**State** | Pointer to [**NullableTaskState**](TaskState.md) |  | [optional] 
 **TryNumber** | Pointer to **int32** |  | [optional] 
 **MapIndex** | Pointer to **int32** |  | [optional] 
 **MaxTries** | Pointer to **int32** |  | [optional] 
@@ -46,8 +27,8 @@ Name | Type | Description | Notes
 **ExecutorConfig** | Pointer to **string** |  | [optional] 
 **SlaMiss** | Pointer to [**NullableSLAMiss**](SLAMiss.md) |  | [optional] 
 **RenderedFields** | Pointer to **map[string]interface{}** | JSON object describing rendered fields.  *New in version 2.3.0*  | [optional] 
-**Trigger** | Pointer to [**Trigger**](Trigger.md) |  | [optional] 
-**TriggererJob** | Pointer to [**Job**](Job.md) |  | [optional] 
+**Trigger** | Pointer to [**NullableTrigger**](Trigger.md) |  | [optional] 
+**TriggererJob** | Pointer to [**NullableJob**](Job.md) |  | [optional] 
 **Note** | Pointer to **NullableString** | Contains manually entered notes by the user about the TaskInstance.  *New in version 2.5.0*  | [optional] 
 
 ## Methods
@@ -299,6 +280,16 @@ SetState sets State field to given value.
 
 HasState returns a boolean if a field has been set.
 
+### SetStateNil
+
+`func (o *TaskInstance) SetStateNil(b bool)`
+
+ SetStateNil sets the value for State to be an explicit nil
+
+### UnsetState
+`func (o *TaskInstance) UnsetState()`
+
+UnsetState ensures that no value is present for State, not even an explicit nil
 ### GetTryNumber
 
 `func (o *TaskInstance) GetTryNumber() int32`
@@ -759,6 +750,16 @@ SetTrigger sets Trigger field to given value.
 
 HasTrigger returns a boolean if a field has been set.
 
+### SetTriggerNil
+
+`func (o *TaskInstance) SetTriggerNil(b bool)`
+
+ SetTriggerNil sets the value for Trigger to be an explicit nil
+
+### UnsetTrigger
+`func (o *TaskInstance) UnsetTrigger()`
+
+UnsetTrigger ensures that no value is present for Trigger, not even an explicit nil
 ### GetTriggererJob
 
 `func (o *TaskInstance) GetTriggererJob() Job`
@@ -784,6 +785,16 @@ SetTriggererJob sets TriggererJob field to given value.
 
 HasTriggererJob returns a boolean if a field has been set.
 
+### SetTriggererJobNil
+
+`func (o *TaskInstance) SetTriggererJobNil(b bool)`
+
+ SetTriggererJobNil sets the value for TriggererJob to be an explicit nil
+
+### UnsetTriggererJob
+`func (o *TaskInstance) UnsetTriggererJob()`
+
+UnsetTriggererJob ensures that no value is present for TriggererJob, not even an explicit nil
 ### GetNote
 
 `func (o *TaskInstance) GetNote() string`

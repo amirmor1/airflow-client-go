@@ -1,22 +1,3 @@
-<!--
- Licensed to the Apache Software Foundation (ASF) under one
- or more contributor license agreements.  See the NOTICE file
- distributed with this work for additional information
- regarding copyright ownership.  The ASF licenses this file
- to you under the Apache License, Version 2.0 (the
- "License"); you may not use this file except in compliance
- with the License.  You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing,
- software distributed under the License is distributed on an
- "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- KIND, either express or implied.  See the License for the
- specific language governing permissions and limitations
- under the License.
- -->
-
 # XCom
 
 ## Properties
@@ -26,6 +7,7 @@ Name | Type | Description | Notes
 **Key** | Pointer to **string** |  | [optional] 
 **Timestamp** | Pointer to **string** |  | [optional] 
 **ExecutionDate** | Pointer to **string** |  | [optional] 
+**MapIndex** | Pointer to **int32** |  | [optional] 
 **TaskId** | Pointer to **string** |  | [optional] 
 **DagId** | Pointer to **string** |  | [optional] 
 **Value** | Pointer to **string** | The value | [optional] 
@@ -123,6 +105,31 @@ SetExecutionDate sets ExecutionDate field to given value.
 `func (o *XCom) HasExecutionDate() bool`
 
 HasExecutionDate returns a boolean if a field has been set.
+
+### GetMapIndex
+
+`func (o *XCom) GetMapIndex() int32`
+
+GetMapIndex returns the MapIndex field if non-nil, zero value otherwise.
+
+### GetMapIndexOk
+
+`func (o *XCom) GetMapIndexOk() (*int32, bool)`
+
+GetMapIndexOk returns a tuple with the MapIndex field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMapIndex
+
+`func (o *XCom) SetMapIndex(v int32)`
+
+SetMapIndex sets MapIndex field to given value.
+
+### HasMapIndex
+
+`func (o *XCom) HasMapIndex() bool`
+
+HasMapIndex returns a boolean if a field has been set.
 
 ### GetTaskId
 

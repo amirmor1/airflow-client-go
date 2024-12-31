@@ -1,22 +1,3 @@
-<!--
- Licensed to the Apache Software Foundation (ASF) under one
- or more contributor license agreements.  See the NOTICE file
- distributed with this work for additional information
- regarding copyright ownership.  The ASF licenses this file
- to you under the Apache License, Version 2.0 (the
- "License"); you may not use this file except in compliance
- with the License.  You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing,
- software distributed under the License is distributed on an
- "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- KIND, either express or implied.  See the License for the
- specific language governing permissions and limitations
- under the License.
- -->
-
 # Task
 
 ## Properties
@@ -37,8 +18,8 @@ Name | Type | Description | Notes
 **Queue** | Pointer to **NullableString** |  | [optional] [readonly] 
 **Pool** | Pointer to **string** |  | [optional] [readonly] 
 **PoolSlots** | Pointer to **float32** |  | [optional] [readonly] 
-**ExecutionTimeout** | Pointer to [**TimeDelta**](TimeDelta.md) |  | [optional] 
-**RetryDelay** | Pointer to [**TimeDelta**](TimeDelta.md) |  | [optional] 
+**ExecutionTimeout** | Pointer to [**NullableTimeDelta**](TimeDelta.md) |  | [optional] 
+**RetryDelay** | Pointer to [**NullableTimeDelta**](TimeDelta.md) |  | [optional] 
 **RetryExponentialBackoff** | Pointer to **bool** |  | [optional] [readonly] 
 **PriorityWeight** | Pointer to **float32** |  | [optional] [readonly] 
 **WeightRule** | Pointer to [**WeightRule**](WeightRule.md) |  | [optional] 
@@ -462,6 +443,16 @@ SetExecutionTimeout sets ExecutionTimeout field to given value.
 
 HasExecutionTimeout returns a boolean if a field has been set.
 
+### SetExecutionTimeoutNil
+
+`func (o *Task) SetExecutionTimeoutNil(b bool)`
+
+ SetExecutionTimeoutNil sets the value for ExecutionTimeout to be an explicit nil
+
+### UnsetExecutionTimeout
+`func (o *Task) UnsetExecutionTimeout()`
+
+UnsetExecutionTimeout ensures that no value is present for ExecutionTimeout, not even an explicit nil
 ### GetRetryDelay
 
 `func (o *Task) GetRetryDelay() TimeDelta`
@@ -487,6 +478,16 @@ SetRetryDelay sets RetryDelay field to given value.
 
 HasRetryDelay returns a boolean if a field has been set.
 
+### SetRetryDelayNil
+
+`func (o *Task) SetRetryDelayNil(b bool)`
+
+ SetRetryDelayNil sets the value for RetryDelay to be an explicit nil
+
+### UnsetRetryDelay
+`func (o *Task) UnsetRetryDelay()`
+
+UnsetRetryDelay ensures that no value is present for RetryDelay, not even an explicit nil
 ### GetRetryExponentialBackoff
 
 `func (o *Task) GetRetryExponentialBackoff() bool`

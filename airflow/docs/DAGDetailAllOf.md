@@ -1,22 +1,3 @@
-<!--
- Licensed to the Apache Software Foundation (ASF) under one
- or more contributor license agreements.  See the NOTICE file
- distributed with this work for additional information
- regarding copyright ownership.  The ASF licenses this file
- to you under the Apache License, Version 2.0 (the
- "License"); you may not use this file except in compliance
- with the License.  You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing,
- software distributed under the License is distributed on an
- "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- KIND, either express or implied.  See the License for the
- specific language governing permissions and limitations
- under the License.
- -->
-
 # DAGDetailAllOf
 
 ## Properties
@@ -28,7 +9,7 @@ Name | Type | Description | Notes
 **Orientation** | Pointer to **string** |  | [optional] [readonly] 
 **Concurrency** | Pointer to **float32** |  | [optional] [readonly] 
 **StartDate** | Pointer to **NullableTime** | The DAG&#39;s start date.  *Changed in version 2.0.1*&amp;#58; Field becomes nullable.  | [optional] [readonly] 
-**DagRunTimeout** | Pointer to [**TimeDelta**](TimeDelta.md) |  | [optional] 
+**DagRunTimeout** | Pointer to [**NullableTimeDelta**](TimeDelta.md) |  | [optional] 
 **DocMd** | Pointer to **NullableString** |  | [optional] [readonly] 
 **DefaultView** | Pointer to **string** |  | [optional] [readonly] 
 **Params** | Pointer to **map[string]interface{}** | User-specified DAG params.  *New in version 2.0.1*  | [optional] [readonly] 
@@ -217,6 +198,16 @@ SetDagRunTimeout sets DagRunTimeout field to given value.
 
 HasDagRunTimeout returns a boolean if a field has been set.
 
+### SetDagRunTimeoutNil
+
+`func (o *DAGDetailAllOf) SetDagRunTimeoutNil(b bool)`
+
+ SetDagRunTimeoutNil sets the value for DagRunTimeout to be an explicit nil
+
+### UnsetDagRunTimeout
+`func (o *DAGDetailAllOf) UnsetDagRunTimeout()`
+
+UnsetDagRunTimeout ensures that no value is present for DagRunTimeout, not even an explicit nil
 ### GetDocMd
 
 `func (o *DAGDetailAllOf) GetDocMd() string`

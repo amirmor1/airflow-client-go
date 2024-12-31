@@ -1,25 +1,6 @@
-<!--
- Licensed to the Apache Software Foundation (ASF) under one
- or more contributor license agreements.  See the NOTICE file
- distributed with this work for additional information
- regarding copyright ownership.  The ASF licenses this file
- to you under the Apache License, Version 2.0 (the
- "License"); you may not use this file except in compliance
- with the License.  You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing,
- software distributed under the License is distributed on an
- "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- KIND, either express or implied.  See the License for the
- specific language governing permissions and limitations
- under the License.
- -->
-
 # \XComApi
 
-All URIs are relative to *http://localhost/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -30,7 +11,7 @@ Method | HTTP request | Description
 
 ## GetXcomEntries
 
-> XComCollection GetXcomEntries(ctx, dagId, dagRunId, taskId).Limit(limit).Offset(offset).Execute()
+> XComCollection GetXcomEntries(ctx, dagId, dagRunId, taskId).MapIndex(mapIndex).XcomKey(xcomKey).Limit(limit).Offset(offset).Execute()
 
 List XCom entries
 
@@ -52,12 +33,14 @@ func main() {
     dagId := "dagId_example" // string | The DAG ID.
     dagRunId := "dagRunId_example" // string | The DAG run ID.
     taskId := "taskId_example" // string | The task ID.
+    mapIndex := int32(56) // int32 | Filter on map index for mapped task. (optional)
+    xcomKey := "xcomKey_example" // string | Only filter the XCom records which have the provided key. (optional)
     limit := int32(56) // int32 | The numbers of items to return. (optional) (default to 100)
     offset := int32(56) // int32 | The number of items to skip before starting to collect the result set. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.XComApi.GetXcomEntries(context.Background(), dagId, dagRunId, taskId).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.XComApi.GetXcomEntries(context.Background(), dagId, dagRunId, taskId).MapIndex(mapIndex).XcomKey(xcomKey).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `XComApi.GetXcomEntries``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -87,6 +70,8 @@ Name | Type | Description  | Notes
 
 
 
+ **mapIndex** | **int32** | Filter on map index for mapped task. | 
+ **xcomKey** | **string** | Only filter the XCom records which have the provided key. | 
  **limit** | **int32** | The numbers of items to return. | [default to 100]
  **offset** | **int32** | The number of items to skip before starting to collect the result set. | 
 
@@ -96,7 +81,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
+No authorization required
 
 ### HTTP request headers
 
@@ -110,7 +95,7 @@ Name | Type | Description  | Notes
 
 ## GetXcomEntry
 
-> XCom GetXcomEntry(ctx, dagId, dagRunId, taskId, xcomKey).Deserialize(deserialize).Execute()
+> XCom GetXcomEntry(ctx, dagId, dagRunId, taskId, xcomKey).MapIndex(mapIndex).Deserialize(deserialize).Execute()
 
 Get an XCom entry
 
@@ -131,11 +116,12 @@ func main() {
     dagRunId := "dagRunId_example" // string | The DAG run ID.
     taskId := "taskId_example" // string | The task ID.
     xcomKey := "xcomKey_example" // string | The XCom key.
+    mapIndex := int32(56) // int32 | Filter on map index for mapped task. (optional)
     deserialize := true // bool | Whether to deserialize an XCom value when using a custom XCom backend.  The XCom API endpoint calls `orm_deserialize_value` by default since an XCom may contain value that is potentially expensive to deserialize in the web server. Setting this to true overrides the consideration, and calls `deserialize_value` instead.  This parameter is not meaningful when using the default XCom backend.  *New in version 2.4.0*  (optional) (default to false)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.XComApi.GetXcomEntry(context.Background(), dagId, dagRunId, taskId, xcomKey).Deserialize(deserialize).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.XComApi.GetXcomEntry(context.Background(), dagId, dagRunId, taskId, xcomKey).MapIndex(mapIndex).Deserialize(deserialize).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `XComApi.GetXcomEntry``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -167,6 +153,7 @@ Name | Type | Description  | Notes
 
 
 
+ **mapIndex** | **int32** | Filter on map index for mapped task. | 
  **deserialize** | **bool** | Whether to deserialize an XCom value when using a custom XCom backend.  The XCom API endpoint calls &#x60;orm_deserialize_value&#x60; by default since an XCom may contain value that is potentially expensive to deserialize in the web server. Setting this to true overrides the consideration, and calls &#x60;deserialize_value&#x60; instead.  This parameter is not meaningful when using the default XCom backend.  *New in version 2.4.0*  | [default to false]
 
 ### Return type
@@ -175,7 +162,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
+No authorization required
 
 ### HTTP request headers
 

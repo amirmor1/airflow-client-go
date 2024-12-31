@@ -1,25 +1,6 @@
-<!--
- Licensed to the Apache Software Foundation (ASF) under one
- or more contributor license agreements.  See the NOTICE file
- distributed with this work for additional information
- regarding copyright ownership.  The ASF licenses this file
- to you under the Apache License, Version 2.0 (the
- "License"); you may not use this file except in compliance
- with the License.  You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing,
- software distributed under the License is distributed on an
- "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- KIND, either express or implied.  See the License for the
- specific language governing permissions and limitations
- under the License.
- -->
-
 # \DatasetApi
 
-All URIs are relative to *http://localhost/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -54,8 +35,8 @@ func main() {
     uri := "uri_example" // string | The encoded Dataset URI
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DatasetApi.GetDataset(context.Background(), uri).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DatasetApi.GetDataset(context.Background(), uri).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DatasetApi.GetDataset``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -88,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
+No authorization required
 
 ### HTTP request headers
 
@@ -131,8 +112,8 @@ func main() {
     sourceMapIndex := int32(56) // int32 | The map index that updated the dataset. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DatasetApi.GetDatasetEvents(context.Background()).Limit(limit).Offset(offset).OrderBy(orderBy).DatasetId(datasetId).SourceDagId(sourceDagId).SourceTaskId(sourceTaskId).SourceRunId(sourceRunId).SourceMapIndex(sourceMapIndex).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DatasetApi.GetDatasetEvents(context.Background()).Limit(limit).Offset(offset).OrderBy(orderBy).DatasetId(datasetId).SourceDagId(sourceDagId).SourceTaskId(sourceTaskId).SourceRunId(sourceRunId).SourceMapIndex(sourceMapIndex).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DatasetApi.GetDatasetEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -168,7 +149,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
+No authorization required
 
 ### HTTP request headers
 
@@ -205,8 +186,8 @@ func main() {
     uriPattern := "uriPattern_example" // string | If set, only return datasets with uris matching this pattern.  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DatasetApi.GetDatasets(context.Background()).Limit(limit).Offset(offset).OrderBy(orderBy).UriPattern(uriPattern).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DatasetApi.GetDatasets(context.Background()).Limit(limit).Offset(offset).OrderBy(orderBy).UriPattern(uriPattern).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DatasetApi.GetDatasets``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -238,7 +219,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
+No authorization required
 
 ### HTTP request headers
 
@@ -275,8 +256,8 @@ func main() {
     dagRunId := "dagRunId_example" // string | The DAG run ID.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DatasetApi.GetUpstreamDatasetEvents(context.Background(), dagId, dagRunId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DatasetApi.GetUpstreamDatasetEvents(context.Background(), dagId, dagRunId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DatasetApi.GetUpstreamDatasetEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -311,7 +292,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
+No authorization required
 
 ### HTTP request headers
 

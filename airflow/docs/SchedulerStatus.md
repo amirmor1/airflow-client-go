@@ -1,30 +1,11 @@
-<!--
- Licensed to the Apache Software Foundation (ASF) under one
- or more contributor license agreements.  See the NOTICE file
- distributed with this work for additional information
- regarding copyright ownership.  The ASF licenses this file
- to you under the Apache License, Version 2.0 (the
- "License"); you may not use this file except in compliance
- with the License.  You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing,
- software distributed under the License is distributed on an
- "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- KIND, either express or implied.  See the License for the
- specific language governing permissions and limitations
- under the License.
- -->
-
 # SchedulerStatus
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Status** | Pointer to [**HealthStatus**](HealthStatus.md) |  | [optional] 
-**LatestSchedulerHeartbeat** | Pointer to **NullableString** | The time the scheduler last do a heartbeat. | [optional] [readonly] 
+**Status** | Pointer to [**NullableHealthStatus**](HealthStatus.md) |  | [optional] 
+**LatestSchedulerHeartbeat** | Pointer to **NullableString** | The time the scheduler last did a heartbeat. | [optional] [readonly] 
 
 ## Methods
 
@@ -70,6 +51,16 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
+### SetStatusNil
+
+`func (o *SchedulerStatus) SetStatusNil(b bool)`
+
+ SetStatusNil sets the value for Status to be an explicit nil
+
+### UnsetStatus
+`func (o *SchedulerStatus) UnsetStatus()`
+
+UnsetStatus ensures that no value is present for Status, not even an explicit nil
 ### GetLatestSchedulerHeartbeat
 
 `func (o *SchedulerStatus) GetLatestSchedulerHeartbeat() string`

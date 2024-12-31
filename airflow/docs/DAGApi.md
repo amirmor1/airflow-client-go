@@ -1,25 +1,6 @@
-<!--
- Licensed to the Apache Software Foundation (ASF) under one
- or more contributor license agreements.  See the NOTICE file
- distributed with this work for additional information
- regarding copyright ownership.  The ASF licenses this file
- to you under the Apache License, Version 2.0 (the
- "License"); you may not use this file except in compliance
- with the License.  You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing,
- software distributed under the License is distributed on an
- "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- KIND, either express or implied.  See the License for the
- specific language governing permissions and limitations
- under the License.
- -->
-
 # \DAGApi
 
-All URIs are relative to *http://localhost/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -34,8 +15,6 @@ Method | HTTP request | Description
 [**PatchDags**](DAGApi.md#PatchDags) | **Patch** /dags | Update DAGs
 [**PostClearTaskInstances**](DAGApi.md#PostClearTaskInstances) | **Post** /dags/{dag_id}/clearTaskInstances | Clear a set of task instances
 [**PostSetTaskInstancesState**](DAGApi.md#PostSetTaskInstancesState) | **Post** /dags/{dag_id}/updateTaskInstancesState | Set a state of task instances
-[**SetMappedTaskInstanceNote**](DAGApi.md#SetMappedTaskInstanceNote) | **Patch** /dags/{dag_id}/dagRuns/{dag_run_id}/taskInstances/{task_id}/{map_index}/setNote | Update the TaskInstance note.
-[**SetTaskInstanceNote**](DAGApi.md#SetTaskInstanceNote) | **Patch** /dags/{dag_id}/dagRuns/{dag_run_id}/taskInstances/{task_id}/setNote | Update the TaskInstance note.
 
 
 
@@ -63,8 +42,8 @@ func main() {
     dagId := "dagId_example" // string | The DAG ID.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DAGApi.DeleteDag(context.Background(), dagId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DAGApi.DeleteDag(context.Background(), dagId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DAGApi.DeleteDag``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -95,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
+No authorization required
 
 ### HTTP request headers
 
@@ -131,8 +110,8 @@ func main() {
     dagId := "dagId_example" // string | The DAG ID.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DAGApi.GetDag(context.Background(), dagId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DAGApi.GetDag(context.Background(), dagId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DAGApi.GetDag``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -165,7 +144,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
+No authorization required
 
 ### HTTP request headers
 
@@ -201,8 +180,8 @@ func main() {
     dagId := "dagId_example" // string | The DAG ID.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DAGApi.GetDagDetails(context.Background(), dagId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DAGApi.GetDagDetails(context.Background(), dagId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DAGApi.GetDagDetails``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -235,7 +214,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
+No authorization required
 
 ### HTTP request headers
 
@@ -271,8 +250,8 @@ func main() {
     fileToken := "fileToken_example" // string | The key containing the encrypted path to the file. Encryption and decryption take place only on the server. This prevents the client from reading an non-DAG file. This also ensures API extensibility, because the format of encrypted data may change. 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DAGApi.GetDagSource(context.Background(), fileToken).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DAGApi.GetDagSource(context.Background(), fileToken).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DAGApi.GetDagSource``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -305,7 +284,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
+No authorization required
 
 ### HTTP request headers
 
@@ -319,7 +298,7 @@ Name | Type | Description  | Notes
 
 ## GetDags
 
-> DAGCollection GetDags(ctx).Limit(limit).Offset(offset).OrderBy(orderBy).Tags(tags).OnlyActive(onlyActive).DagIdPattern(dagIdPattern).Execute()
+> DAGCollection GetDags(ctx).Limit(limit).Offset(offset).OrderBy(orderBy).Tags(tags).OnlyActive(onlyActive).Paused(paused).DagIdPattern(dagIdPattern).Execute()
 
 List DAGs
 
@@ -343,11 +322,12 @@ func main() {
     orderBy := "orderBy_example" // string | The name of the field to order the results by. Prefix a field name with `-` to reverse the sort order.  *New in version 2.1.0*  (optional)
     tags := []string{"Inner_example"} // []string | List of tags to filter results.  *New in version 2.2.0*  (optional)
     onlyActive := true // bool | Only filter active DAGs.  *New in version 2.1.1*  (optional) (default to true)
+    paused := true // bool | Only filter paused/unpaused DAGs. If absent or null, it returns paused and unpaused DAGs.  *New in version 2.6.0*  (optional)
     dagIdPattern := "dagIdPattern_example" // string | If set, only return DAGs with dag_ids matching this pattern.  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DAGApi.GetDags(context.Background()).Limit(limit).Offset(offset).OrderBy(orderBy).Tags(tags).OnlyActive(onlyActive).DagIdPattern(dagIdPattern).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DAGApi.GetDags(context.Background()).Limit(limit).Offset(offset).OrderBy(orderBy).Tags(tags).OnlyActive(onlyActive).Paused(paused).DagIdPattern(dagIdPattern).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DAGApi.GetDags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -373,6 +353,7 @@ Name | Type | Description  | Notes
  **orderBy** | **string** | The name of the field to order the results by. Prefix a field name with &#x60;-&#x60; to reverse the sort order.  *New in version 2.1.0*  | 
  **tags** | **[]string** | List of tags to filter results.  *New in version 2.2.0*  | 
  **onlyActive** | **bool** | Only filter active DAGs.  *New in version 2.1.1*  | [default to true]
+ **paused** | **bool** | Only filter paused/unpaused DAGs. If absent or null, it returns paused and unpaused DAGs.  *New in version 2.6.0*  | 
  **dagIdPattern** | **string** | If set, only return DAGs with dag_ids matching this pattern.  | 
 
 ### Return type
@@ -381,7 +362,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
+No authorization required
 
 ### HTTP request headers
 
@@ -416,8 +397,8 @@ func main() {
     taskId := "taskId_example" // string | The task ID.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DAGApi.GetTask(context.Background(), dagId, taskId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DAGApi.GetTask(context.Background(), dagId, taskId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DAGApi.GetTask``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -452,7 +433,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
+No authorization required
 
 ### HTTP request headers
 
@@ -487,8 +468,8 @@ func main() {
     orderBy := "orderBy_example" // string | The name of the field to order the results by. Prefix a field name with `-` to reverse the sort order.  *New in version 2.1.0*  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DAGApi.GetTasks(context.Background(), dagId).OrderBy(orderBy).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DAGApi.GetTasks(context.Background(), dagId).OrderBy(orderBy).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DAGApi.GetTasks``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -522,7 +503,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
+No authorization required
 
 ### HTTP request headers
 
@@ -558,8 +539,8 @@ func main() {
     updateMask := []string{"Inner_example"} // []string | The fields to update on the resource. If absent or empty, all modifiable fields are updated. A comma-separated list of fully qualified names of fields.  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DAGApi.PatchDag(context.Background(), dagId).DAG(dAG).UpdateMask(updateMask).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DAGApi.PatchDag(context.Background(), dagId).DAG(dAG).UpdateMask(updateMask).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DAGApi.PatchDag``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -594,7 +575,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
+No authorization required
 
 ### HTTP request headers
 
@@ -636,8 +617,8 @@ func main() {
     onlyActive := true // bool | Only filter active DAGs.  *New in version 2.1.1*  (optional) (default to true)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DAGApi.PatchDags(context.Background()).DagIdPattern(dagIdPattern).DAG(dAG).Limit(limit).Offset(offset).Tags(tags).UpdateMask(updateMask).OnlyActive(onlyActive).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DAGApi.PatchDags(context.Background()).DagIdPattern(dagIdPattern).DAG(dAG).Limit(limit).Offset(offset).Tags(tags).UpdateMask(updateMask).OnlyActive(onlyActive).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DAGApi.PatchDags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -672,7 +653,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
+No authorization required
 
 ### HTTP request headers
 
@@ -709,8 +690,8 @@ func main() {
     clearTaskInstances := *openapiclient.NewClearTaskInstances() // ClearTaskInstances | Parameters of action
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DAGApi.PostClearTaskInstances(context.Background(), dagId).ClearTaskInstances(clearTaskInstances).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DAGApi.PostClearTaskInstances(context.Background(), dagId).ClearTaskInstances(clearTaskInstances).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DAGApi.PostClearTaskInstances``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -744,7 +725,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
+No authorization required
 
 ### HTTP request headers
 
@@ -781,8 +762,8 @@ func main() {
     updateTaskInstancesState := *openapiclient.NewUpdateTaskInstancesState() // UpdateTaskInstancesState | Parameters of action
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DAGApi.PostSetTaskInstancesState(context.Background(), dagId).UpdateTaskInstancesState(updateTaskInstancesState).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DAGApi.PostSetTaskInstancesState(context.Background(), dagId).UpdateTaskInstancesState(updateTaskInstancesState).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DAGApi.PostSetTaskInstancesState``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -816,166 +797,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## SetMappedTaskInstanceNote
-
-> TaskInstance SetMappedTaskInstanceNote(ctx, dagId, dagRunId, taskId, mapIndex).SetTaskInstanceNote(setTaskInstanceNote).Execute()
-
-Update the TaskInstance note.
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    dagId := "dagId_example" // string | The DAG ID.
-    dagRunId := "dagRunId_example" // string | The DAG run ID.
-    taskId := "taskId_example" // string | The task ID.
-    mapIndex := int32(56) // int32 | The map index.
-    setTaskInstanceNote := *openapiclient.NewSetTaskInstanceNote("Note_example") // SetTaskInstanceNote | Parameters of set Task Instance note.
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DAGApi.SetMappedTaskInstanceNote(context.Background(), dagId, dagRunId, taskId, mapIndex).SetTaskInstanceNote(setTaskInstanceNote).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DAGApi.SetMappedTaskInstanceNote``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SetMappedTaskInstanceNote`: TaskInstance
-    fmt.Fprintf(os.Stdout, "Response from `DAGApi.SetMappedTaskInstanceNote`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dagId** | **string** | The DAG ID. | 
-**dagRunId** | **string** | The DAG run ID. | 
-**taskId** | **string** | The task ID. | 
-**mapIndex** | **int32** | The map index. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSetMappedTaskInstanceNoteRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
-
- **setTaskInstanceNote** | [**SetTaskInstanceNote**](SetTaskInstanceNote.md) | Parameters of set Task Instance note. | 
-
-### Return type
-
-[**TaskInstance**](TaskInstance.md)
-
-### Authorization
-
-[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## SetTaskInstanceNote
-
-> TaskInstance SetTaskInstanceNote(ctx, dagId, dagRunId, taskId).SetTaskInstanceNote(setTaskInstanceNote).Execute()
-
-Update the TaskInstance note.
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    dagId := "dagId_example" // string | The DAG ID.
-    dagRunId := "dagRunId_example" // string | The DAG run ID.
-    taskId := "taskId_example" // string | The task ID.
-    setTaskInstanceNote := *openapiclient.NewSetTaskInstanceNote("Note_example") // SetTaskInstanceNote | Parameters of set Task Instance note.
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DAGApi.SetTaskInstanceNote(context.Background(), dagId, dagRunId, taskId).SetTaskInstanceNote(setTaskInstanceNote).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DAGApi.SetTaskInstanceNote``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SetTaskInstanceNote`: TaskInstance
-    fmt.Fprintf(os.Stdout, "Response from `DAGApi.SetTaskInstanceNote`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dagId** | **string** | The DAG ID. | 
-**dagRunId** | **string** | The DAG run ID. | 
-**taskId** | **string** | The task ID. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSetTaskInstanceNoteRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
- **setTaskInstanceNote** | [**SetTaskInstanceNote**](SetTaskInstanceNote.md) | Parameters of set Task Instance note. | 
-
-### Return type
-
-[**TaskInstance**](TaskInstance.md)
-
-### Authorization
-
-[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
+No authorization required
 
 ### HTTP request headers
 

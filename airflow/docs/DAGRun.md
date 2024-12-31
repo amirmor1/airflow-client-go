@@ -1,22 +1,3 @@
-<!--
- Licensed to the Apache Software Foundation (ASF) under one
- or more contributor license agreements.  See the NOTICE file
- distributed with this work for additional information
- regarding copyright ownership.  The ASF licenses this file
- to you under the Apache License, Version 2.0 (the
- "License"); you may not use this file except in compliance
- with the License.  You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing,
- software distributed under the License is distributed on an
- "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- KIND, either express or implied.  See the License for the
- specific language governing permissions and limitations
- under the License.
- -->
-
 # DAGRun
 
 ## Properties
@@ -34,7 +15,7 @@ Name | Type | Description | Notes
 **LastSchedulingDecision** | Pointer to **NullableTime** |  | [optional] [readonly] 
 **RunType** | Pointer to **string** |  | [optional] [readonly] 
 **State** | Pointer to [**DagState**](DagState.md) |  | [optional] 
-**ExternalTrigger** | Pointer to **bool** |  | [optional] [readonly] [default to true]
+**ExternalTrigger** | Pointer to **bool** |  | [optional] [readonly] 
 **Conf** | Pointer to **map[string]interface{}** | JSON object describing additional configuration parameters.  The value of this field can be set only when creating the object. If you try to modify the field of an existing object, the request fails with an BAD_REQUEST error.  | [optional] 
 **Note** | Pointer to **NullableString** | Contains manually entered notes by the user about the DagRun.  *New in version 2.5.0*  | [optional] 
 
